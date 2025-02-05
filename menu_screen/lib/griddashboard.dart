@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:menu_screen/src/settings.dart';
+
+class Settings extends StatelessWidget {
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      appBar: AppBar(
+
+        title: Text('Settings'),
+
+      ),
+
+      body: Center(
+
+        child: Text('Settings Page'),
+
+      ),
+
+    );
+
+  }
+
+}
 
 class GridDashboard extends StatelessWidget {
-  final Items item1 =  Items(
-      title: "Calendar",
-      subtitle: "March, Wednesday",
-      event: "3 Events",
-      img: "assets/calendar.png");
+  final Items item1 = Items(
+    title: "Calendar",
+    subtitle: "March, Wednesday",
+    event: "3 Events",
+    img: "assets/calendar.png",
+  );
 
   final Items item2 = Items(
     title: "Groceries",
@@ -14,24 +42,28 @@ class GridDashboard extends StatelessWidget {
     event: "4 Items",
     img: "assets/food.png",
   );
+
   final Items item3 = Items(
     title: "Locations",
     subtitle: "Lucy Mao going to Office",
     event: "",
     img: "assets/map.png",
   );
+
   final Items item4 = Items(
     title: "Activity",
-    subtitle: "Rose favirited your Post",
+    subtitle: "Rose favorited your Post",
     event: "",
     img: "assets/festival.png",
   );
-  final Items item5 =  Items(
+
+  final Items item5 = Items(
     title: "To do",
     subtitle: "Homework, Design",
     event: "4 Items",
     img: "assets/todo.png",
   );
+
   final Items item6 = Items(
     title: "Settings",
     subtitle: "",
@@ -45,15 +77,26 @@ class GridDashboard extends StatelessWidget {
     var color = 0xff453658;
     return Flexible(
       child: GridView.count(
-          childAspectRatio: 1.0,
-          padding: EdgeInsets.only(left: 16, right: 16),
-          crossAxisCount: 2,
-          crossAxisSpacing: 18,
-          mainAxisSpacing: 18,
-          children: myList.map((data) {
-            return Container(
+        childAspectRatio: 1.0,
+        padding: EdgeInsets.only(left: 16, right: 16),
+        crossAxisCount: 2,
+        crossAxisSpacing: 18,
+        mainAxisSpacing: 18,
+        children: myList.map((data) {
+          return GestureDetector(
+            onTap: () {
+              if (data.title == "Settings") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Settings()),
+                );
+              }
+            },
+            child: Container(
               decoration: BoxDecoration(
-                  color: Color(color), borderRadius: BorderRadius.circular(10)),
+                color: Color(color),
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -67,10 +110,12 @@ class GridDashboard extends StatelessWidget {
                   Text(
                     data.title,
                     style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600)),
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 8,
@@ -78,10 +123,12 @@ class GridDashboard extends StatelessWidget {
                   Text(
                     data.subtitle,
                     style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600)),
+                      textStyle: TextStyle(
+                        color: Colors.white38,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 14,
@@ -89,15 +136,19 @@ class GridDashboard extends StatelessWidget {
                   Text(
                     data.event,
                     style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600)),
+                      textStyle: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ],
               ),
-            );
-          }).toList()),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }

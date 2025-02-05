@@ -29,6 +29,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   google_fonts: ^6.2.1
+  settings_ui: ^2.0.2
+  path_provider: ^2.0.10
+  provider: ^6.0.3
+  shared_preferences: ^2.0.15
   flutter:
     sdk: flutter
 
